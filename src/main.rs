@@ -3,8 +3,9 @@ use std::error::Error;
 use std::fs::File;
 use std::path::PathBuf;
 
-mod trebuchet;
 mod cube;
+mod gear;
+mod trebuchet;
 
 const INPUT_FILE_NAME: &str = "input.txt";
 
@@ -26,6 +27,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     return match day {
         "01" => trebuchet::trebuchet(input_file),
         "02" => cube::cube(input_file),
+        "03" => gear::gear(input_file),
         _ => Err(format!("Day {} not implemented", day).into()),
     }
 }
