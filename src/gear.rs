@@ -1,8 +1,8 @@
+use regex::Regex;
 use std::error::Error;
 use std::fs::File;
 use std::io::{prelude::*, BufReader};
 use std::result::Result;
-use regex::Regex;
 
 pub fn gear(f: File) -> Result<(), Box<dyn Error>> {
     let reader = BufReader::new(f);
