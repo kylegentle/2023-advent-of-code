@@ -3,6 +3,7 @@ use std::error::Error;
 use std::fs::File;
 use std::path::PathBuf;
 
+mod boat_race;
 mod cube;
 mod gear;
 mod scratchcard;
@@ -32,6 +33,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         "03" => gear::gear(input_file),
         "04" => scratchcard::scratchcard(input_file),
         "05" => seed::seed(input_file),
+        "06" => boat_race::boat_race(input_file),
         _ => Err(format!("Day {} not implemented", day).into()),
     }
 }
