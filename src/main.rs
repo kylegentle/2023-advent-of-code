@@ -6,6 +6,7 @@ use std::path::PathBuf;
 mod cube;
 mod gear;
 mod scratchcard;
+mod seed;
 mod trebuchet;
 
 const INPUT_FILE_NAME: &str = "input.txt";
@@ -30,6 +31,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         "02" => cube::cube(input_file),
         "03" => gear::gear(input_file),
         "04" => scratchcard::scratchcard(input_file),
+        "05" => seed::seed(input_file),
         _ => Err(format!("Day {} not implemented", day).into()),
     }
 }
