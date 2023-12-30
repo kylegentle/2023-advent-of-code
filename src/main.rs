@@ -10,6 +10,7 @@ mod gear;
 mod scratchcard;
 mod seed;
 mod trebuchet;
+mod wasteland;
 
 const INPUT_FILE_NAME: &str = "input.txt";
 
@@ -36,6 +37,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         "05" => seed::seed(input_file),
         "06" => boat_race::boat_race(input_file),
         "07" => camel_cards::camel_cards(input_file),
+        "08" => wasteland::wasteland(input_file),
         _ => Err(format!("Day {} not implemented", day).into()),
     }
 }
