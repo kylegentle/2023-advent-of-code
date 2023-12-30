@@ -7,6 +7,7 @@ mod boat_race;
 mod camel_cards;
 mod cube;
 mod gear;
+mod mirage;
 mod scratchcard;
 mod seed;
 mod trebuchet;
@@ -38,6 +39,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         "06" => boat_race::boat_race(input_file),
         "07" => camel_cards::camel_cards(input_file),
         "08" => wasteland::wasteland(input_file),
+        "09" => mirage::mirage(input_file),
         _ => Err(format!("Day {} not implemented", day).into()),
     }
 }
