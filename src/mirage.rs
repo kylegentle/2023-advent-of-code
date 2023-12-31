@@ -19,6 +19,12 @@ pub fn mirage(f: File) -> Result<(), Box<dyn Error>> {
     })?;
     println!("Part 1: {}", p1);
 
+    let p2 = measurements.iter().try_fold(0, |acc, ms| {
+        predict_prev(ms).map(|n| acc + n)
+    })?;
+
+    println!("Part 2: {}", p2);
+
     Ok(())
 }
 
@@ -52,6 +58,29 @@ fn predict_next(nums: &Vec<i64>) -> Result<i64, Box<dyn Error>> {
     }
 }
 
+fn predict_prev(nums: &Vec<i64>) -> Result<i64, Box<dyn Error>> {
+    let mut cur = nums.clone();
+    let mut first_diffs: Vec<i64> = Vec::new();
+
+    let Some(fst) = nums.iter().next() else {
+        return Err("empty nums".into());
+    };
+
+    loop {
+        let d = differences(&cur);
+        if d.iter().all(|d| *d == 0) {
+            return Ok(fst - first_diffs.iter().rev().fold(0, |acc, d| d - acc));
+        }
+
+        let Some(ld) = d.iter().next() else {
+            return Err("empty diffs".into());
+        };
+
+        first_diffs.push(*ld);
+        cur = d;
+    }
+}
+
 mod tests {
     #[cfg(test)]
     use super::*;
@@ -70,5 +99,13 @@ mod tests {
         let expected = 28;
         let actual = predict_next(&v).unwrap();
         assert_eq!(actual, expected)
+    }
+
+    #[test]
+    fn test_predict_prev() {
+        let v = vec![10, 13, 16, 21, 30, 45];
+        let expected = 5;
+        let actual = predict_prev(&v).unwrap();
+        assert_eq!(actual, expected);
     }
 }
